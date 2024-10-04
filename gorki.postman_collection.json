@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "a6215f7f-d3a8-4994-84b9-66c15c7edb22",
+		"name": "gorki",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36516158"
+	},
+	"item": [
+		{
+			"name": "2. Reservation",
+			"item": [
+				{
+					"name": "1. create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2025-06-20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}reservation",
+							"host": [
+								"{{host}}reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.1. create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": "2025-06-20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}reservation",
+							"host": [
+								"{{host}}reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.2. create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "999",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2025-06-20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}reservation",
+							"host": [
+								"{{host}}reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}reservation?page=2&limit=10&is_confirmed=0",
+							"host": [
+								"{{host}}reservation"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "is_confirmed",
+									"value": "0",
+									"description": "Если выключить, то покажет все"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. distroy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}reservation/1",
+							"host": [
+								"{{host}}reservation"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2024-11-28",
+									"type": "text"
+								},
+								{
+									"key": "is_confirmed",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}reservation/update",
+							"host": [
+								"{{host}}reservation"
+							],
+							"path": [
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. find",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}reservation/2",
+							"host": [
+								"{{host}}reservation"
+							],
+							"path": [
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. user get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "contentType",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}reservation/user/1?limit=10&page=1&is_confirmed=1",
+							"host": [
+								"{{host}}reservation"
+							],
+							"path": [
+								"user",
+								"1"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "is_confirmed",
+									"value": "1",
+									"description": "Если выключить, то покажет все"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "1. Auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"var token = data.access_token;\r",
+							"console.log(token);\r",
+							"\r",
+							"pm.collectionVariables.set(\"access_token\", token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{host}}auth/login?email=admin@admin.com&password=admin",
+					"host": [
+						"{{host}}auth"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "admin@admin.com"
+						},
+						{
+							"key": "password",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
